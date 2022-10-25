@@ -1,0 +1,31 @@
+{
+  "name": "group02",
+  "version": "1.0.0",
+  "description": "## Task List Manager Sync is a task-oriented application where users track their tasks, deadlines, and differentiate between personal or business tasks. The personal tasks will stay private, while the business tasks will have the ability for collaborative sharing and editing.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidPaniagua15/Group02.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidPaniagua15/Group02/issues"
+  },
+  "homepage": "https://github.com/DavidPaniagua15/Group02#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "handlebars": "^4.7.7",
+    "handlebars-helpers": "^0.10.0",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.25.3"
+  }
+}
