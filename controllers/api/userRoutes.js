@@ -11,7 +11,9 @@ router.post('/', async (req, res) => {
     });
 
     req.session.save(() => {
-      req.session.loggedIn = true;
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.logged_in = true;
 
       res.status(200).json(dbUserData);
     });
@@ -47,7 +49,9 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.loggedIn = true;
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.logged_in = true;
       console.log(
         'save the cookie',
         req.session.cookie
@@ -65,7 +69,7 @@ router.post('/login', async (req, res) => {
 
 // Logout
 router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
     });
