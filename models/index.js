@@ -8,7 +8,7 @@ const { DataTypes } = require('sequelize');
 // Tasklist belong to User
 Tasklist.belongsTo(User, {
     foreignKey: {
-        // name: 'owner_id'
+        name: 'owner_id',
         type: DataTypes.UUID
     }
 });
@@ -24,7 +24,7 @@ Task.belongsTo(Tasklist, {
 // Users hasMany Tasklist
 User.hasMany(Tasklist, {
     foreignKey: {
-        // name: 'owner_id'
+        name: 'owner_id',
         type: DataTypes.UUID
     },
     onDelete: 'CASCADE'
