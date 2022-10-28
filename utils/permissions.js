@@ -11,7 +11,7 @@ const hasPermissions = (req, res, next) => {
 }
 
 
-module.exports = { hasPermissions };
+module.exports = hasPermissions;
 
 
        

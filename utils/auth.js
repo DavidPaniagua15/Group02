@@ -8,4 +8,4 @@ const checkAuth = (req, res, next) => {
 
 // Add a checkPermissions helper...
 
-module.exports = { checkAuth };
+module.exports = checkAuth;
