@@ -1,13 +1,14 @@
 const router = require('express').Router();
 const { Model, Tasklist } = require('../../models');
-const hasPermissions = require('../../utils');
+const { checkAuth } = require('../../utils/auth');
+const { hasPermissions } = require('../../utils/permissions');
 
 //  GET one tasklist
-router.get('/:id', async (req, res) => {
+router.get('/:id', checkAuth, hasPermissions, async (req, res) => {
     try {
         const TasklistData = await Tasklist.findByPk(req.params.id);
         if (!TasklistData) {
-            res.status(404).json({ message: 'No user with this id!' });
+            res.status(404).json({ message: 'No tasklist found!' });
             return;
         }
         res.status(200).json(userData);
@@ -17,7 +18,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST to create new tasklist
-router.post('/', async (req, res) => {
+router.post('/', checkAuth, hasPermissions, async (req, res) => {
     try {
       const TasklistData = await Tasklist.create({
         name: req.body.name,
@@ -30,7 +31,7 @@ router.post('/', async (req, res) => {
   });
 
 // PUT update a tasklist
-router.put('/:id', async (req, res) => {
+router.put('/:id', checkAuth, hasPermissions, async (req, res) => {
     try {
         const TasklistData = await Tasklist.update(req.body, {
             where: {
