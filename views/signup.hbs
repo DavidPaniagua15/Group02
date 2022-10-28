@@ -3,8 +3,8 @@
 <div class="container">
     <div class="toggle-box">
         <span id="toggle-btn"></span>
-        <div class="btn">
-            <i class=""fa-solid fa-user"></i>p>sign In</div>
+        <div class="btn active" id="signIn-btn">
+            <i class="fa-solid fa-user"></i>p>sign In</div>
 
 
 <div class ="d-flex justify-content-center align-items-center vh-100">
@@ -28,6 +28,70 @@
         <div class="account">
             <p>Already Registered?</p><a href="#">Sign In Here</a>
         </div>
-    </form>
-</div>
+        </form>
+        </div>
 
+<form class="form" id="signIn-form">
+    <div class="input-box">
+        <img src="images/user.png" alt=""><input type="text" placeholder="Username">
+        </div>
+         <div class="input-box">
+        <img src="images/email.png" alt=""><input type="email" placeholder="Email">
+        </div>
+            <div class="input-box">
+        <img src="images/password.png" alt=""><input type="password" placeholder="Password">
+        </div>
+
+
+        <a href="#">Forgot Password?</a>
+        <input type="checkbox"><label>Remember Me</label>
+
+        <button>Sign In</button>
+        <div class="account">
+            <p>Don't have an account?</p>
+        </div>
+
+<form class="form" id="signUp-form">
+            <div class="input-box">
+            <img src="images/user.png" alt=""><input type="text" placeholder="Username">
+            </div>
+            <div class="input-box">
+            <img src="images/email.png" alt=""><input type="email" placeholder="Email">
+            </div>
+              <div class="input-box">
+            <img src="images/password.png" alt=""><input type="password" placeholder="Password">
+            </div>
+
+            <a href="#">Forgot Password?</a>
+            <input type="checkbox"><label>Accept Terms &amp; Conditions</label>
+             
+            <button>Sign Up</button>
+          
+            </div>
+
+        </form>
+    <script> 
+
+        let signInForm = document.getElementById('signIn-form');
+        let signUpForm = document.getElementById('signUp-form');
+
+        let toggleBtn = document.getElementById('toggle-btn');
+        let signInBtn = document.getElementById('signIn-btn');
+        let signUpBtn = document.getElementById('signUp-btn');
+
+signInBtn.onclick = () => {
+    signInForm.style.left = '0px';
+    signUpForm.style.left = '350px';
+    toggleBtn.style.left = "45px";
+    signInBtn.classList.add('active');
+    signUpBtn.classList.remove('active');
+}
+signUpBtn.onclick = () => {
+    signInForm.style.left = '-350px';
+    signUpForm.style.left = '0px';
+    toggleBtn.style.left = "195px";
+    signInBtn.classList.remove('active');
+    signUpBtn.classList.add('active');
+}
+
+    </script>
