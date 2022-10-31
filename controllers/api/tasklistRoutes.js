@@ -1,17 +1,48 @@
 const router = require('express').Router();
-const { Model, Tasklist } = require('../../models');
-const { checkAuth } = require('../../utils/auth');
+const { User, Tasklist, Task } = require('../../models');
+const checkAuth  = require('../../utils/auth');
 const { hasPermissions } = require('../../utils/permissions');
+
+//  GET all tasklists for the logged in user
+router.get('/', checkAuth, hasPermissions, async (req, res) => {
+  try {
+    const TasklistData = await Tasklist.findAll({
+      where: {
+          owner_id: req.session.user_id
+      },
+      include: [
+        {
+          model: Task,
+          attributes: ['description']
+        }
+      ]
+      });
+      if (!TasklistData) {
+          res.status(404).json({ message: 'No tasklist found!' });
+          return;
+      }
+      res.status(200).json(TasklistData);
+  }   catch (err) {
+      res.status(500).json(err);
+  }
+});
 
 //  GET one tasklist
 router.get('/:id', checkAuth, hasPermissions, async (req, res) => {
     try {
-        const TasklistData = await Tasklist.findByPk(req.params.id);
+      const TasklistData = await Tasklist.findByPk(req.params.id, {
+        include: [
+          {
+            model: Task,
+            attributes: ['description']
+          }
+        ]
+        });
         if (!TasklistData) {
             res.status(404).json({ message: 'No tasklist found!' });
             return;
         }
-        res.status(200).json(userData);
+        res.status(200).json(TasklistData);
     }   catch (err) {
         res.status(500).json(err);
     }
@@ -24,7 +55,7 @@ router.post('/', checkAuth, hasPermissions, async (req, res) => {
         name: req.body.name,
         owner_id: req.body.owner_id
       });
-      res.status(200).json(userData);
+      res.status(200).json(TasklistData);
     } catch (err) {
       res.status(400).json(err);
     }
@@ -42,7 +73,7 @@ router.put('/:id', checkAuth, hasPermissions, async (req, res) => {
         res.status(404).json({ message: 'This tasklist does not exist.' });
       return;
     }
-    res.status(200).json(userData);
+    res.status(200).json(TasklistData);
     } catch (err) {
     res.status(500).json(err);
     }

@@ -1,9 +1,11 @@
 const router = require('express').Router();
-const { Tasklist, Task } = require('../../models');
-const { checkAuth } = require('../../utils/auth');
+const { User, Tasklist, Task } = require('../../models');
+const checkAuth = require('../../utils/auth');
 const { hasPermissions } = require('../../utils/permissions');
 
-router.post('/task', checkAuth, hasPermissions, async (req, res) => {
+
+// POST to create new task
+router.post('/', checkAuth, hasPermissions, async (req, res) => {
     try {
         const taskData = await Task.create({
             tasklist_id: req.body.tasklist_id,
@@ -17,6 +19,40 @@ router.post('/task', checkAuth, hasPermissions, async (req, res) => {
     }
 });
 
+
+//  GET all tasks for the logged in user
+router.get('/', checkAuth, hasPermissions, async (req, res) => {
+    try {
+        const taskData = await Task.findAll({
+            include: [{
+                model: Tasklist,
+                attributes: ['name'],
+                where: {
+                    owner_id: req.session.user_id
+                }
+            }]
+        });
+        
+        if (!taskData) {
+            res.status(404).json({ message: 'No task found!' });
+            return;
+        }
+
+        res.status(200).json(taskData);
+
+        // const task = await taskData.get({ plain: true });
+
+        // res.render('task', {
+        //     task,
+        //     logged_in: req.session.logged_in,
+        //     username: req.session.username
+        // });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+//  GET one task
 router.get('/task/:taskid', checkAuth, hasPermissions, async (req, res) => {
     try {
         const taskData = await Task.findOne({
@@ -42,6 +78,7 @@ router.get('/task/:taskid', checkAuth, hasPermissions, async (req, res) => {
     }
 });
 
+// PUT update a task
 router.put('/task/:taskid', checkAuth, hasPermissions, async (req, res) => {
     try {
         const taskData = await Task.update(
@@ -65,6 +102,7 @@ router.put('/task/:taskid', checkAuth, hasPermissions, async (req, res) => {
     }
 });
 
+// DELETE a task
 router.delete('/task/:taskid', checkAuth, hasPermissions, async (req, res) => {
     try { 
         const taskData = await Task.destroy({
