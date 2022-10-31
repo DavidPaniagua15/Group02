@@ -16,7 +16,7 @@ Tasklist.belongsTo(User, {
 // Task belongTo Tasklist
 Task.belongsTo(Tasklist, {
     foreignKey: {
-        // name: 'tasklist_id'
+        name: 'tasklist_id',
         type: DataTypes.UUID
     }
 });
@@ -32,7 +32,7 @@ User.hasMany(Tasklist, {
 
 Tasklist.hasMany(Task, {
     foreignKey: {
-        // name: 'tasklist_id'
+        name: 'tasklist_id',
         type: DataTypes.UUID
     },
     onDelete: 'CASCADE'
