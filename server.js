@@ -26,7 +26,7 @@ const sess = {
     db: sequelize
   })
 };
-
+//test comment//
 // Add express-session and store as Express.js middleware
 app.use(session(sess));
 
