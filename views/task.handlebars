@@ -1,0 +1,7 @@
+<div>
+    <header>Tasks: {{task.description}}</header>
+    {{#each tasklists.tasks as |task|}}
+    {{> task-details}}
+    {{/each}}
+
+</div>
