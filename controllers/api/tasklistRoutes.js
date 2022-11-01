@@ -27,10 +27,11 @@ router.get('/', checkAuth, hasPermissions, async (req, res) => {
       return tasklist.get({ plain: true })
     });
 
-    res.render('profile', {
+    console.log(tasklists);
+    res.render('profile-tasklists', {
       tasklists,
       username: req.session.username,
-      loggedIn: req.session.logged_in
+      logged_in: req.session.logged_in
     });
     // res.status(200).json(tasklists);
   } catch (err) {
@@ -56,10 +57,11 @@ router.get('/:id', checkAuth, hasPermissions, async (req, res) => {
 
     const tasklists = await tasklistData.get({ plain: true });
 
+    console.log(tasklists);
     res.render('tasklist', {
       tasklists,
       username: req.session.username,
-      loggedIn: req.session.logged_in
+      logged_in: req.session.logged_in
     });
     // res.status(200).json(tasklistData);
   } catch (err) {

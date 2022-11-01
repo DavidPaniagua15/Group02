@@ -1,7 +1,6 @@
-<div>
-    <header>Tasks: {{task.description}}</header>
-    {{#each tasklists.tasks as |task|}}
+{{> task-details tasks}}
+{{!-- <div>
+    {{#each tasks as |task|}}
     {{> task-details}}
     {{/each}}
-
-</div>
+</div> --}}

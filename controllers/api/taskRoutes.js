@@ -56,15 +56,15 @@ router.get('/:id', checkAuth, hasPermissions, async (req, res) => {
             return;
         }
 
-        const task = await taskData.get({ plain: true });
+        const tasks = await taskData.get({ plain: true });
 
         res.render('task', {
-            task,
+            tasks,
             logged_in: req.session.logged_in,
             username: req.session.username
         });
 
-        // res.status(200).json(task);
+        // res.status(200).json(tasks);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -116,7 +116,7 @@ router.put('/:id', checkAuth, hasPermissions, async (req, res) => {
 });
 
 // DELETE a task
-router.delete('/task/:id', checkAuth, hasPermissions, async (req, res) => {
+router.delete('/:id', checkAuth, hasPermissions, async (req, res) => {
     try {
         const taskData = await Task.destroy({
             where: {

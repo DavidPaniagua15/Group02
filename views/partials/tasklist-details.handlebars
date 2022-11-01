@@ -1,8 +1,14 @@
-<section class="card todolist">
+<section class="card tasklist">
     <div class="card-head">
         <a href="/api/tasklists/{{id}}">
             <header>{{name}}</header>
         </a>
+        <button class="tasklist-edit">
+            <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <button class="tasklist-delete">
+            <i class="fa-solid fa-trash"></i>
+        </button>
     </div>
     <div class="card-body">
         {{#each tasks as |task|}}
