@@ -6,7 +6,7 @@ const { hasPermissions } = require('../../utils/permissions');
 //  GET all tasklists for the logged in user
 router.get('/', checkAuth, hasPermissions, async (req, res) => {
   try {
-    const TasklistData = await Tasklist.findAll({
+    const tasklistData = await Tasklist.findAll({
       where: {
           owner_id: req.session.user_id
       },
@@ -17,11 +17,22 @@ router.get('/', checkAuth, hasPermissions, async (req, res) => {
         }
       ]
       });
-      if (!TasklistData) {
+      if (!tasklistData) {
           res.status(404).json({ message: 'No tasklist found!' });
           return;
       }
-      res.status(200).json(TasklistData);
+    
+    const tasklists = await tasklistData.map((tasklist) => {
+      return tasklist.get({ plain: true })
+    });
+
+    res.render('profile', {
+      tasklists,
+      username: req.session.username,
+      loggedIn: req.session.logged_in
+    });
+      // console.log(tasklists);
+      // res.status(200).json(tasklists);
   }   catch (err) {
       res.status(500).json(err);
   }
@@ -30,19 +41,27 @@ router.get('/', checkAuth, hasPermissions, async (req, res) => {
 //  GET one tasklist
 router.get('/:id', checkAuth, hasPermissions, async (req, res) => {
     try {
-      const TasklistData = await Tasklist.findByPk(req.params.id, {
+      const tasklistData = await Tasklist.findByPk(req.params.id, {
         include: [
           {
-            model: Task,
-            attributes: ['description']
+            model: Task
+            // attributes: ['description']
           }
         ]
         });
-        if (!TasklistData) {
+        if (!tasklistData) {
             res.status(404).json({ message: 'No tasklist found!' });
             return;
         }
-        res.status(200).json(TasklistData);
+      
+        const tasklists = await tasklistData.get({ plain: true });
+      
+      res.render('tasklist', {
+        tasklists,
+        username: req.session.username,
+        loggedIn: req.session.logged_in
+      });
+        // res.status(200).json(tasklistData);
     }   catch (err) {
         res.status(500).json(err);
     }

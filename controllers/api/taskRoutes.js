@@ -24,6 +24,9 @@ router.post('/', checkAuth, hasPermissions, async (req, res) => {
 router.get('/', checkAuth, hasPermissions, async (req, res) => {
     try {
         const taskData = await Task.findAll({
+            group: [
+                [Tasklist, 'name', 'DESC']
+            ],
             include: [{
                 model: Tasklist,
                 attributes: ['name'],
@@ -32,21 +35,29 @@ router.get('/', checkAuth, hasPermissions, async (req, res) => {
                 }
             }]
         });
-        
+
         if (!taskData) {
             res.status(404).json({ message: 'No task found!' });
             return;
         }
 
-        res.status(200).json(taskData);
+        // console.log(taskData);
+        const tasks = await taskData.map((task) => {
+            return task.get({ plain: true })
+        });
 
-        // const task = await taskData.get({ plain: true });
+        console.log(`\n\n\n GETTING PLAIN TASKS \n\n\n`);
+        console.log(tasks);
+
+        res.status(200).json(tasks);
+
 
         // res.render('task', {
         //     task,
         //     logged_in: req.session.logged_in,
         //     username: req.session.username
         // });
+
     } catch (err) {
         res.status(500).json(err);
     }
@@ -60,7 +71,7 @@ router.get('/task/:taskid', checkAuth, hasPermissions, async (req, res) => {
                 id: req.params.taskid
             }
         });
-        
+
         if (!taskData) {
             res.status(404).json({ message: 'No task found!' });
             return;
@@ -104,7 +115,7 @@ router.put('/task/:taskid', checkAuth, hasPermissions, async (req, res) => {
 
 // DELETE a task
 router.delete('/task/:taskid', checkAuth, hasPermissions, async (req, res) => {
-    try { 
+    try {
         const taskData = await Task.destroy({
             where: {
                 id: req.params.taskid
@@ -119,7 +130,7 @@ router.delete('/task/:taskid', checkAuth, hasPermissions, async (req, res) => {
         res.status(200).json(taskData);
     } catch (err) {
         res.status(500).json(err);
-    } 
+    }
 })
 
 module.exports = router;

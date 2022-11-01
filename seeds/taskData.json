@@ -13,5 +13,29 @@
     },
     {
         "description": "bread"
+    },
+    {
+        "description": "eggs"
+    },
+    {
+        "description": "bacon"
+    },
+    {
+        "description": "skyr"
+    },
+    {
+        "description": "measure dimensions"
+    },
+    {
+        "description": "get supplies"
+    },
+    {
+        "description": "get saw"
+    },
+    {
+        "description": "buy nails"
+    },
+    {
+        "description": "laundry"
     }
 ]

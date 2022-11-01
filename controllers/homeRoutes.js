@@ -14,7 +14,7 @@ router.get('/', checkAuth, async (req, res) => {
             return task.get({ plain: true });
         });
 
-        res.render('homepage', {
+        res.render('profile', {
             tasklists,
             logged_in: req.session.logged_in,
             username: req.session.username
