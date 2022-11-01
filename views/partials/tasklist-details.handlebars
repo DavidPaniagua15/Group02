@@ -1,0 +1,13 @@
+<section class="card todolist">
+    <div class="card-head">
+        <a href="/api/tasklists/{{id}}">
+            <header>{{name}}</header>
+        </a>
+    </div>
+    <div class="card-body">
+        {{#each tasks as |task|}}
+        {{> task-details}}
+        {{/each}}
+    </div>
+
+</section>
