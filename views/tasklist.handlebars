@@ -1,11 +1,2 @@
-<div class="card todolist">
-    <div class="card-head">
-            <header>Tasklist: {{tasklists.name}}</header>
-    </div>
-    <div class="card-body">
-        {{#each tasklists.tasks as |task|}}
-        {{> task-details}}
-        {{/each}}
-    </div>
+{{> tasklist-details tasklists}}
 
-</div>

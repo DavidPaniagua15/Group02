@@ -1,0 +1,10 @@
+{{#each tasklists as |tasklist|}}
+{{> tasklist-details}}
+{{/each}}
+<div class="card tasklist" data-owner-id="{{user_id}}">
+    <header>Create a New Tasklist</header>
+    <button class="tasklist-add">
+        <i class="fa-solid fa-square-plus"></i>
+        CREATE
+    </button>
+</div>

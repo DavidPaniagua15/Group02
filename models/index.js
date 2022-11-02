@@ -18,7 +18,8 @@ Task.belongsTo(Tasklist, {
     foreignKey: {
         name: 'tasklist_id',
         type: DataTypes.UUID
-    }
+    },
+    onDelete: 'CASCADE'
 });
 
 // Users hasMany Tasklist

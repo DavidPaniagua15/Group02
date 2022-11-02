@@ -17,7 +17,7 @@ router.get('/', checkAuth, hasPermissions, async (req, res) => {
         }
       ]
     });
-    
+
     if (!tasklistData) {
       res.status(404).json({ message: 'No tasklist found!' });
       return;
@@ -27,10 +27,11 @@ router.get('/', checkAuth, hasPermissions, async (req, res) => {
       return tasklist.get({ plain: true })
     });
 
-    res.render('profile', {
+    res.render('profile-tasklists', {
       tasklists,
       username: req.session.username,
-      loggedIn: req.session.logged_in
+      user_id: req.session.user_id,
+      logged_in: req.session.logged_in
     });
     // res.status(200).json(tasklists);
   } catch (err) {
@@ -59,7 +60,8 @@ router.get('/:id', checkAuth, hasPermissions, async (req, res) => {
     res.render('tasklist', {
       tasklists,
       username: req.session.username,
-      loggedIn: req.session.logged_in
+      user_id: req.session.user_id,
+      logged_in: req.session.logged_in
     });
     // res.status(200).json(tasklistData);
   } catch (err) {
@@ -75,12 +77,11 @@ router.post('/', checkAuth, hasPermissions, async (req, res) => {
       owner_id: req.body.owner_id
     });
 
-    
-    const tasklists = await tasklistData.get({ plain: true });
 
-    console.log(tasklists);
-    res.redirect(`/${tasklists.id}`);
-    // res.status(200).json(tasklistData);
+    // const tasklists = await tasklistData.get({ plain: true });
+
+    // res.redirect(`/${tasklists.id}`);
+    res.status(200).send();
   } catch (err) {
     res.status(400).json(err);
   }
@@ -93,18 +94,38 @@ router.put('/:id', checkAuth, hasPermissions, async (req, res) => {
       where: {
         id: req.params.id,
       },
+        name: req.body.name
     });
-    
-    if (!tasklistData[0]) {
+
+    if (!tasklistData) {
       res.status(404).json({ message: 'This tasklist does not exist.' });
       return;
     }
 
-    const tasklists = await tasklistData.get({ plain: true });
+    // const tasklists = await tasklistData.get({ plain: true });
 
-    console.log(tasklists);
-    res.redirect(`/${tasklists.id}`);
-    // res.status(200).json(tasklistData);
+    // res.redirect(`/${tasklists.id}`);
+    res.status(200).send();
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// DELETE a task
+router.delete('/:id', checkAuth, hasPermissions, async (req, res) => {
+  try {
+    const tasklistData = await Tasklist.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+
+    if (!tasklistData) {
+      res.status(404).json({ message: 'No tasklist found!' });
+      return;
+    }
+
+    res.status(200).send();
   } catch (err) {
     res.status(500).json(err);
   }

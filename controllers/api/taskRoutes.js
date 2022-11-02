@@ -10,7 +10,6 @@ router.get('/', checkAuth, hasPermissions, async (req, res) => {
         const taskData = await Task.findAll({
             include: [{
                 model: Tasklist,
-                // attributes: ['name'],
                 where: {
                     owner_id: req.session.user_id
                 }
@@ -31,10 +30,10 @@ router.get('/', checkAuth, hasPermissions, async (req, res) => {
 
         res.render('profile-tasks', {
             tasks,
-            logged_in: req.session.logged_in,
-            username: req.session.username
+            username: req.session.username,
+            user_id: req.session.user_id,
+            logged_in: req.session.logged_in
         });
-        // res.status(200).json(tasks);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -56,15 +55,16 @@ router.get('/:id', checkAuth, hasPermissions, async (req, res) => {
             return;
         }
 
-        const task = await taskData.get({ plain: true });
+        const tasks = await taskData.get({ plain: true });
 
         res.render('task', {
-            task,
-            logged_in: req.session.logged_in,
-            username: req.session.username
+            tasks,
+            username: req.session.username,
+            user_id: req.session.user_id,
+            logged_in: req.session.logged_in
         });
 
-        // res.status(200).json(task);
+        // res.status(200).json(tasks);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -79,11 +79,7 @@ router.post('/', checkAuth, hasPermissions, async (req, res) => {
             description: req.body.description
         });
 
-        const tasks = await taskData.get({ plain: true });
-
-        console.log(tasks);
-        res.redirect(`/${tasks.id}`);
-        // res.status(200).json(taskData);
+        res.status(200).send();
     } catch (err) {
         res.status(500).json(err);
     }
@@ -105,18 +101,14 @@ router.put('/:id', checkAuth, hasPermissions, async (req, res) => {
             return;
         }
 
-        const tasks = await taskData.get({ plain: true });
-
-        console.log(tasks);
-        res.redirect(`/${tasks.id}`);
-        // res.status(200).json(taskData);
+        res.status(200).send();
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
 // DELETE a task
-router.delete('/task/:id', checkAuth, hasPermissions, async (req, res) => {
+router.delete('/:id', checkAuth, hasPermissions, async (req, res) => {
     try {
         const taskData = await Task.destroy({
             where: {
@@ -129,14 +121,10 @@ router.delete('/task/:id', checkAuth, hasPermissions, async (req, res) => {
             return;
         }
 
-        const tasks = await taskData.get({ plain: true });
-
-        console.log(tasks);
-        res.redirect('/');
-        // res.status(200).json(taskData);
+        res.status(200).send();
     } catch (err) {
         res.status(500).json(err);
     }
-})
+});
 
 module.exports = router;

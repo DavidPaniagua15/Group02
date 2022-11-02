@@ -1,8 +1,11 @@
-<div class="card todolist">
-    <div class="card-head">
+<div class="card task">
         <a href="/api/tasks/{{id}}">
             <header>{{description}}</header>
         </a>
-
-    </div>
+        <button class="task-edit" data-task-id="{{id}}" data-tasklist-id="{{tasklist_id}}">
+            <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <button class="task-delete" data-task-id="{{id}}" data-tasklist-id="{{tasklist_id}}">
+            <i class="fa-solid fa-trash"></i>
+        </button>
 </div>
