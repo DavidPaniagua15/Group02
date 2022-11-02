@@ -1,21 +1,10 @@
 {{#each tasklists as |tasklist|}}
 {{> tasklist-details}}
 {{/each}}
-<div class="card tasklist">
-    <div class="card-head">
-        <header>Create a new list</header>
-    </div>
-    <div class="card-body">
-        <form class="form tasklist-create" id="tasklist-create">
-            <div class="form-group">
-                <label for="task-name">Tasklist Name:</label>
-                <input class="form-input" type="text" id="tasklist-name" name="task-name" />
-            </div>
-            <div class="form-group">
-                <button type="submit" value="submit">Submit</button>
-            </div>
-    </div>
-
-    </form>
-
+<div class="card tasklist" data-owner-id="{{user_id}}">
+    <header>Create a New Tasklist</header>
+    <button class="tasklist-add">
+        <i class="fa-solid fa-square-plus"></i>
+        CREATE
+    </button>
 </div>

@@ -15,22 +15,33 @@
 </head>
 
 <body>
+  {{#if logged_in}}
   <header>
     <h1>Hello, {{username}}</h1>
   </header>
+  {{/if}}
   <nav>
-    <input type="button" onclick="location.href='/';" value="Home">
     {{#if logged_in}}
+    <input type="button" onclick="location.href='/';" value="Home">
     <button id="logout">Logout</button>
     <input type="button" onclick="location.href='/api/tasklists';" value="View Your Tasklists">
     <input type="button" onclick="location.href='/api/tasks';" value="View Your Tasks">
-    {{else}}
+    {{else unless login_page}}
     <input type="button" onclick="location.href='/login';" value="Login">
     {{/if}}
   </nav>
   <main>
     {{{ body }}}
+    <div id="form-container"></div>
   </main>
+  {{#if login_page}}
+  <script src="/js/login.js"></script>
+  {{else}}
+  <script src="/js/logout.js"></script>
+  <script src="/js/taskManager.js"></script>
+  <script src="/js/tasklistManager.js"></script>
+  {{/if}}
+
 </body>
 
 </html>

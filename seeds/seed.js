@@ -19,8 +19,6 @@ const seedDatabase = async () => {
     const users = await allUsers.map((user) => {
         return user.get({ plain: true });
     });
-    console.log('cleaned users:');
-    console.log(users);
 
     for (const tasklist of tasklistData) {
         await Tasklist.create({
@@ -34,8 +32,6 @@ const seedDatabase = async () => {
         });
     };
 
-    console.log(tasklists);
-
     for (const task of taskData) {
         await Task.create({
             ...task,
@@ -48,8 +44,6 @@ const seedDatabase = async () => {
         })
 
     };
-
-    console.log(tasks);
 
     process.exit(0);
 };

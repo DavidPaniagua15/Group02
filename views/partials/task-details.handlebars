@@ -2,10 +2,10 @@
         <a href="/api/tasks/{{id}}">
             <header>{{description}}</header>
         </a>
-        <button class="task-edit">
+        <button class="task-edit" data-task-id="{{id}}" data-tasklist-id="{{tasklist_id}}">
             <i class="fa-solid fa-pen-to-square"></i>
         </button>
-        <button class="task-delete">
+        <button class="task-delete" data-task-id="{{id}}" data-tasklist-id="{{tasklist_id}}">
             <i class="fa-solid fa-trash"></i>
         </button>
 </div>
