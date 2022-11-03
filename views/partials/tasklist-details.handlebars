@@ -1,12 +1,12 @@
-<section class="card tasklist" data-tasklist-id="{{id}}">
-    <div class="card-head tasklist">
+<section class="card tasklist w-75 d-flex flex-column justify-content-center" data-tasklist-id="{{id}}">
+    <div class="card-head tasklist d-flex flex-row justify-content-between">
         <a href="/api/tasklists/{{id}}">
             <header>{{name}}</header>
         </a>
-        <button class="tasklist-edit" data-tasklist-id="{{id}}">
+        <button class="tasklist-edit p-2" data-tasklist-id="{{id}}">
             <i class="fa-solid fa-pen-to-square"></i>
         </button>
-        <button class="tasklist-delete" data-tasklist-id="{{id}}">
+        <button class="tasklist-delete  p-2" data-tasklist-id="{{id}}">
             <i class="fa-solid fa-trash"></i>
         </button>
     </div>

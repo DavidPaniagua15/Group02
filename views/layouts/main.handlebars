@@ -25,10 +25,10 @@
   {{/if}}
   <nav class="navbar navbar-expand-lg">
     {{#if logged_in}}
-    <input class="nav-item" type="button" onclick="location.href='/';" value="Home">
-    <button class="nav-item" id="logout">Logout</button>
-    <input class="nav-item" type="button" onclick="location.href='/api/tasklists';" value="View Your Tasklists">
-    <input class="nav-item" type="button" onclick="location.href='/api/tasks';" value="View Your Tasks">
+    <a class="nav-item nav-link" type="button" href="/">Home</a>
+    <a class="nav-item  nav-link" id="logout">Logout</a>
+    <a class="nav-item nav-link" type="button" href="/api/tasklists">View Your Tasklists</a>
+    <a class="nav-item nav-link" type="button" href="/api/tasks">View Your Tasks</a>
     {{else unless login_page}}
     <input type="button" onclick="location.href='/login';" value="Login">
     {{/if}}
