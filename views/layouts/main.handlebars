@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>SYNC</title>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <!-- Place for stylesheet linking here-->
@@ -19,7 +20,7 @@
   <header class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-3">SYNC</h1>
-    <p class="lead">Hello, {{username}}</p>
+      <p class="lead">Hello, {{username}}</p>
     </div>
   </header>
   {{/if}}
@@ -38,7 +39,7 @@
     <div id="form-container"></div>
   </main>
   {{#if login_page}}
-  <script src="/js/login.js"></script>
+  <script type="module" src="/js/login.js"></script>
   {{else}}
   <script src="/js/logout.js"></script>
   <script src="/js/taskManager.js"></script>

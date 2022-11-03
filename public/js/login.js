@@ -46,7 +46,11 @@ const createUserHandler = async (event) => {
     if (response.ok) {
       location.reload();
     } else {
-      alert('Tasklist creation failed.')
+      Swal.fire({
+        title: 'Error',
+        text: 'Account creation failed.',
+        icon: 'error'
+      });
     }
   }
 };

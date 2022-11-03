@@ -136,7 +136,11 @@ const tasklistAddHandler = async (event) => {
         if (response.ok) {
             location.reload();
         } else {
-            alert('Tasklist creation failed.')
+            Swal.fire({
+                title: 'Error!',
+                text: 'Tasklist creation failed.',
+                icon: 'error'
+            });
         }
     }
 };
@@ -159,7 +163,11 @@ const tasklistEditHandler = async (event) => {
         if (response.ok) {
             location.reload();
         } else {
-            alert('Tasklist update failed.')
+            Swal.fire({
+                title: 'Error!',
+                text: 'Tasklist update failed.',
+                icon: 'error'
+            });
         }
     }
 };
@@ -186,7 +194,11 @@ const tasklistDeleteHandler = async (event) => {
             location.reload();
         }
     } else {
-        alert('Tasklist delete failed.')
+        Swal.fire({
+            title: 'Error!',
+            text: 'Tasklist delete failed.',
+            icon: 'error'
+        });
     }
 };
 

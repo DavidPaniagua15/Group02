@@ -159,7 +159,11 @@ const taskEditHandler = async (event) => {
         if (response.ok) {
             location.reload();
         } else {
-            alert('Task update failed.')
+            Swal.fire({
+                title: 'Error!',
+                text: 'Task update failed.',
+                icon: 'error'
+            });
         }
     }
 };
@@ -186,7 +190,11 @@ const taskDeleteHandler = async (event) => {
             location.reload();
         }
     } else {
-        alert('Task delete failed.')
+        Swal.fire({
+            title: 'Error!',
+            text: 'Task delete failed.',
+            icon: 'error'
+        });
     }
 };
 
