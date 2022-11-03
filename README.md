@@ -67,9 +67,9 @@ THEN I will securely log out of the application
 ```
 
 ## Mock-Up
-
+<img src=Sync/Group02/public/images/screenshot.png>
 
 ## Link to Sync
 Repository: https://github.com/DavidPaniagua15/Group02
 
-
+Heroku: https://dry-citadel-28280.herokuapp.com/
