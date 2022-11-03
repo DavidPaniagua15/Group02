@@ -6,8 +6,10 @@
 }
 
 .container{
-    width: 350px;
-    height: 470px;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 80%;
     backdrop-filter:blur(8px);
     background-color: #ffffff5d;
     border-radius: 5px;
@@ -124,10 +126,6 @@ button{
 .account :is(a,p){
     font-size: 14px;
     padding-top: 17px;
-
-}
-
-#signUp-form{
 
 }
 

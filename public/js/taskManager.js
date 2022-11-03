@@ -136,7 +136,7 @@ const taskAddHandler = async (event) => {
         if (response.ok) {
             location.reload();
         } else {
-            alert('Task creation failed.')
+            alter('Task creation failed.')
         }
     }
 };
