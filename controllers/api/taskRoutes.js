@@ -64,7 +64,6 @@ router.get('/:id', checkAuth, hasPermissions, async (req, res) => {
             logged_in: req.session.logged_in
         });
 
-        // res.status(200).json(tasks);
     } catch (err) {
         res.status(500).json(err);
     }

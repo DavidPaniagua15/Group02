@@ -13,7 +13,6 @@ router.get('/', checkAuth, hasPermissions, async (req, res) => {
       include: [
         {
           model: Task,
-          // attributes: ['description']
         }
       ]
     });
@@ -33,7 +32,6 @@ router.get('/', checkAuth, hasPermissions, async (req, res) => {
       user_id: req.session.user_id,
       logged_in: req.session.logged_in
     });
-    // res.status(200).json(tasklists);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -46,7 +44,6 @@ router.get('/:id', checkAuth, hasPermissions, async (req, res) => {
       include: [
         {
           model: Task
-          // attributes: ['description']
         }
       ]
     });
@@ -63,7 +60,6 @@ router.get('/:id', checkAuth, hasPermissions, async (req, res) => {
       user_id: req.session.user_id,
       logged_in: req.session.logged_in
     });
-    // res.status(200).json(tasklistData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -77,10 +73,6 @@ router.post('/', checkAuth, hasPermissions, async (req, res) => {
       owner_id: req.body.owner_id
     });
 
-
-    // const tasklists = await tasklistData.get({ plain: true });
-
-    // res.redirect(`/${tasklists.id}`);
     res.status(200).send();
   } catch (err) {
     res.status(400).json(err);
@@ -102,9 +94,6 @@ router.put('/:id', checkAuth, hasPermissions, async (req, res) => {
       return;
     }
 
-    // const tasklists = await tasklistData.get({ plain: true });
-
-    // res.redirect(`/${tasklists.id}`);
     res.status(200).send();
   } catch (err) {
     res.status(500).json(err);

@@ -5,7 +5,7 @@ const createTasklistAddForm = async (event) => {
     ownerIdValue = owner.dataset.ownerId;
 
     const container = document.querySelector('#form-container');
-    // build the document element contents 
+
     const formCard = document.createElement('div');
     formCard.classList.add('container', 'card', 'tasklist');
 
@@ -65,7 +65,7 @@ const createTasklistEditorForm = async (event) => {
     tasklistIdValue = tasklist.dataset.tasklistId;
 
     const container = document.querySelector('#form-container');
-    // build the document element contents 
+
     const formCard = document.createElement('div');
     formCard.classList.add('container', 'card', 'tasklist');
 
