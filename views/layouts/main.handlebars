@@ -16,16 +16,19 @@
 
 <body>
   {{#if logged_in}}
-  <header>
-    <h1>Hello, {{username}}</h1>
+  <header class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-3">SYNC</h1>
+    <p class="lead">Hello, {{username}}</p>
+    </div>
   </header>
   {{/if}}
-  <nav>
+  <nav class="navbar navbar-expand-lg">
     {{#if logged_in}}
-    <input type="button" onclick="location.href='/';" value="Home">
-    <button id="logout">Logout</button>
-    <input type="button" onclick="location.href='/api/tasklists';" value="View Your Tasklists">
-    <input type="button" onclick="location.href='/api/tasks';" value="View Your Tasks">
+    <input class="nav-item" type="button" onclick="location.href='/';" value="Home">
+    <button class="nav-item" id="logout">Logout</button>
+    <input class="nav-item" type="button" onclick="location.href='/api/tasklists';" value="View Your Tasklists">
+    <input class="nav-item" type="button" onclick="location.href='/api/tasks';" value="View Your Tasks">
     {{else unless login_page}}
     <input type="button" onclick="location.href='/login';" value="Login">
     {{/if}}

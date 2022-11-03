@@ -136,7 +136,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
 
