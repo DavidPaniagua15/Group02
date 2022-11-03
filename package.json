@@ -32,7 +32,7 @@
     "mysql2": "^2.3.3",
     "node": "^19.0.0",
     "sequelize": "^6.25.3",
-    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.6.5",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

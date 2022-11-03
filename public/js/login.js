@@ -1,3 +1,5 @@
+const Swal = require('sweetalert2');
+
 const loginFormHandler = async (event) => {
     event.preventDefault();
   
@@ -17,7 +19,12 @@ const loginFormHandler = async (event) => {
         // If successful, redirect the browser to the profile page
         document.location.replace('/api/tasklists');
       } else {
-        alert(response.statusText);
+        console.log('attempting sweetalert');
+        Swal.fire({
+          title: 'Error!',
+          text: response.statusText,
+          icon: 'error'
+        });
       }
     }
   };
