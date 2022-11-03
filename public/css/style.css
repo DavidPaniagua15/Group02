@@ -99,7 +99,7 @@ input[type="checkbox"]{
 }
 
 button{
-    width: 100%;
+    /* width: 100%; */
     font-size: 15px;
     padding: 13px 0;
     margin-top: 25px;
