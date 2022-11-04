@@ -9,7 +9,11 @@ const logoutHandler = async (event) => {
     if (response.ok) {
         document.location.replace('/');
     } else {
-        alert('Failed to logout.')
+        Swal.fire({
+            title: 'Error!',
+            text: 'Failed to logout.',
+            icon: 'error'
+        });
     }
 };
 
